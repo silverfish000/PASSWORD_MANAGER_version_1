@@ -3,6 +3,7 @@ import os
 import time
 import string
 from verif_mdp import verif_mdp
+
 # ------------ db de categories et tout les mots de passes (non chiffres) ------------
 dictionnaire_admin = {
     'categories_mot_de_passe' : [""]
