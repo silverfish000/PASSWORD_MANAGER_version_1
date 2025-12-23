@@ -113,23 +113,16 @@ def add_mdp(dictionnaire) :
         print("="*75)
         print(" AJOUT MOT DE PASSE ".center(75, "/"))
         print("="*75)
-        print("Voici la liste des categories de user : \n")
+        print("Tapes sur 'Q' pour quitter\n")
+        print(f"Voici la liste des categories de {pseudo} : \n")
         noms_base = [tuples[0] for tuples in dictionnaire_auto_add['categories_mot_de_passe']]
-        for i in noms_base : # NE PAS TOUCHER
+        for i in noms_base :
             print(f"- {i} ", end="")
+        print()
         choix_user_categorie = input("\nParmi les catégories ci-dessus, choisis-en une : ")
         noms_categories = [tuples[0].lower() for tuples in dictionnaire_auto_add['categories_mot_de_passe']]
         if (choix_user_categorie.lower() in noms_categories) :
-            while (True) :
-                choix_user_mdp = input(f"Choisis ton mot de passe pour ton compte chez {choix_user} :")
-                demander_mdp_valide(choix_user_categorie, dictionnaire)
-                if (verif_mdp == True) :
-                    print()
-                    time.sleep(2)
-                    break
-                else :
-                    print()
-                    time.sleep(2)
+                choix_user_mdp = demander_mdp_valide(choix_user_categorie, dictionnaire)
         else :
             print(f"ERREUR : la categorie '{choix_user_categorie}' est inexistante")
             time.sleep(2)
