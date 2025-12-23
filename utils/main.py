@@ -72,15 +72,16 @@ def supp_mdp(choix_user) :
 
 def aff_menu() : # a ameliorer
     clear()
-    print("-="*35)
-    print("GESTIONNAIRE DE MOT DE PASSE".center(65))
-    print("-="*35)
-    print("by Silver & Squash\n")
-    print("1) Ajouter un mot de passe\n")
-    print("2) Modifier un mot de passe\n")
-    print("3) Supprimer un mot de passe\n")
-    print("4) Admin Choix (ONLY ADMIN)")
     while (True) :
+        print("-="*35)
+        print("GESTIONNAIRE DE MOT DE PASSE".center(65))
+        print("-="*35)
+        print("by Silver & Squash\n")
+        print("1 - Ajouter un mot de passe\n")
+        print("2 - Modifier un mot de passe\n")
+        print("3 - Supprimer un mot de passe\n")
+        print("4 - Admin Choix (ONLY ADMIN)\n")
+        print("5 - QUITTER\n")
         try :
             choix_user = int(input("Fais ton choix (QUE DES CHIFFRES) :"))
             break
@@ -88,7 +89,7 @@ def aff_menu() : # a ameliorer
             print("ERREUR : Tu ne dois que choisir des nombres")
     if (choix_user == 1) :
         print("Tu as choisis l'option 1")
-        # Ajouter le systeme add_mdp
+        add_mdp()
     elif (choix_user == 2) :
         print("Tu as choisis l'option 2")
         # Ajouter le systeme modif_mdp

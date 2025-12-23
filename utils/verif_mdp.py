@@ -1,5 +1,3 @@
-import string
-
 def verif_mdp(mot_de_passe, dictionnaire):
     
     if len(mot_de_passe) < 8:
