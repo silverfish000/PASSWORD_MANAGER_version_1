@@ -83,31 +83,30 @@ def aff_menu() :
             choix_user = int(input("Fais ton choix (QUE DES CHIFFRES) :"))
         except ValueError :
             print("ERREUR : Tu ne dois que choisir des nombres")
-        while (True) :
-            if (choix_user == 1) :
-                print("Tu as choisis l'option 1")
-                add_mdp()
-            elif (choix_user == 2) :
-                print("Tu as choisis l'option 2")
-                # Ajouter le systeme modif_mdp
-            elif (choix_user == 3) :
-                print("Tu as choisis l'option 3")
-                # Ajouter le systeme supp_mdp
-            elif (choix_user == 4) :
-                print("Tu as choisis l'option 4")
-                admin_choix()
-            elif (choix_user == 5) :
-                clear()
-                decision_quitter = input("Vous etes sur de vouloir quitter ? (o/n)")
-                if (decision_quitter.lower() == 'o') :
-                    exit()
-                else :
-                    break
+        if (choix_user == 1) :
+            print("Tu as choisis l'option 1")
+            add_mdp()
+        elif (choix_user == 2) :
+            print("Tu as choisis l'option 2")
+            # Ajouter le systeme modif_mdp
+        elif (choix_user == 3) :
+            print("Tu as choisis l'option 3")
+            # Ajouter le systeme supp_mdp
+        elif (choix_user == 4) :
+            print("Tu as choisis l'option 4")
+            admin_choix()
+        elif (choix_user == 5) :
+            clear()
+            decision_quitter = input("Vous etes sur de vouloir quitter ? (o/n)")
+            if (decision_quitter.lower() == 'o') :
+                exit()
             else :
-                clear()
-                print("ERREUR : ONLY (1 - 5)")
-                time.sleep(2)
-                break
+                continue
+        else :
+            clear()
+            print("ERREUR : ONLY (1 - 5)")
+            time.sleep(2)
+            break
 
 
 
