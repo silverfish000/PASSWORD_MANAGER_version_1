@@ -37,10 +37,13 @@ def admin_choix() :
         choix_admin_categories = input("Ecris ton choix -->")
         clear()
         if (choix_admin_categories.lower() == 'auto') :
-            print("Tu as choisis la fonction 'auto' le systeme va le mettre en place")
-            dictionnaire_auto_add = dictionnaire_auto
-            time.sleep(2)
-            break
+            if (dictionnaire_auto == dictionnaire_auto_add) :
+                print("Le systeme 'auto' est deja activer sur ta machine")
+                time.sleep(2)
+            else :
+                print("Tu as choisis la fonction 'auto' le systeme va le mettre en place")
+                dictionnaire_auto_add = dictionnaire_auto
+                time.sleep(2)
         else :
             print("Pour arreter : tape 'STOP'\n")
             if (choix_admin_categories.lower() == 'stop') :
@@ -85,7 +88,6 @@ def aff_menu() :
         except ValueError :
             print("ERREUR : Tu ne dois que choisir des nombres")
         if (choix_user == 1) :
-            print("Tu as choisis l'option 1")
             add_mdp()
         elif (choix_user == 2) :
             print("Tu as choisis l'option 2")
@@ -97,12 +99,19 @@ def aff_menu() :
             print("Tu as choisis l'option 4")
             admin_choix()
         elif (choix_user == 5) :
-            clear()
-            decision_quitter = input("Vous etes sur de vouloir quitter ? (o/n)")
-            if (decision_quitter.lower() == 'o') :
-                exit()
-            else :
-                continue
+            while (True) :
+                clear()
+                decision_quitter = input("Vous etes sur de vouloir quitter ? (o/n)")
+                if (decision_quitter.lower() == 'o') :
+                    clear()
+                    print("A la prochaine mon bro !!!!")
+                    time.sleep(1.5)
+                    exit()
+                elif (decision_quitter.lower() == 'n') :
+                    break
+                else :
+                    print("ERREUR : ONLY (o/n)")
+                    time.sleep(2)
         else :
             clear()
             print("ERREUR : ONLY (1 - 5)")
