@@ -38,7 +38,7 @@ def admin_choix() :
         clear()
         if (choix_admin_categories.lower() == 'auto') :
             print("Tu as choisis la fonction 'auto' le systeme va le mettre en place")
-            categorie_final = dictionnaire_auto
+            dictionnaire_auto_add = dictionnaire_auto
             time.sleep(2)
             break
         else :
@@ -46,7 +46,7 @@ def admin_choix() :
             if (choix_admin_categories.lower() == 'stop') :
                 print("tu viens de taper 'STOP' tu vas etre rediriger vers le menu dans quelques secondes ...")
                 time.sleep(2)
-                categorie_final = dictionnaire_auto_add
+                print(dictionnaire_auto_add and dictionnaire_auto)
                 aff_menu()
             elif (choix_admin_categories in dictionnaire_auto_add['categories_mot_de_passe']):
                         clear()
@@ -55,8 +55,6 @@ def admin_choix() :
                 dictionnaire_auto_add['categories_mot_de_passe'].append(choix_admin_categories)
                 clear()
                 print(f"✅ La categorie '{choix_admin_categories}' a bien etait rajoutee !\n")
-    print(categorie_final)
-    return categorie_final
 
 def add_mdp(choix_user) : # a faire plus tard 
     if (choix_user == 1) :
