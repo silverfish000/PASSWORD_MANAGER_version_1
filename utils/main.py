@@ -7,19 +7,22 @@ from verif_mdp import verif_mdp
 def clear() :
     os.system('cls' if os.name == 'nt' else 'clear')
 
+dictionnaire_auto = {
+'categories_mot_de_passe' : [
+    "Netflix", "Amazon", "Github", "Apple", 
+    "Google", "Facebook", "Spotify", "Steam", 
+    "Adobe", "LinkedIn", "Instagram", "Discord"]
+}
+dictionnaire_auto_add = {
+'categories_mot_de_passe' : [
+    "Netflix", "Amazon", "Github", "Apple", 
+    "Google", "Facebook", "Spotify", "Steam", 
+    "Adobe", "LinkedIn", "Instagram", "Discord"]
+}
+
 def admin_choix() :
-    dictionnaire_auto = {
-    'categories_mot_de_passe' : [
-        "Netflix", "Amazon", "Github", "Apple", 
-        "Google", "Facebook", "Spotify", "Steam", 
-        "Adobe", "LinkedIn", "Instagram", "Discord"]
-    }
-    dictionnaire_auto_add = {
-    'categories_mot_de_passe' : [
-        "Netflix", "Amazon", "Github", "Apple", 
-        "Google", "Facebook", "Spotify", "Steam", 
-        "Adobe", "LinkedIn", "Instagram", "Discord"]
-    }
+    global dictionnaire_auto
+    global dictionnaire_auto_add
     clear()
     print("="*70)
     print(" CONFIGURATION ADMIN ".center(70, "═"))
