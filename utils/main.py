@@ -1,21 +1,73 @@
 import os
 import time
-from verif_mdp import verif_mdp
+from verif_mdp import verif_mdp, demander_mdp_valide
 from config import dictionnaire_auto, dictionnaire_auto_add, dictionnaire_interdit
 
 def clear() :
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def admin_choix() :
+def bonjour() :
+    clear()
+    print("-="*40)
+    print(r"""
+██████╗  █████╗ ███████╗███████╗    ██╗    ██╗ ██████╗ ██████╗ ██╗     ██████╗ 
+██╔══██╗██╔══██╗██╔════╝██╔════╝    ██║    ██║██╔═══██╗██╔══██╗██║     ██╔══██╗
+██████╔╝███████║███████╗███████╗    ██║ █╗ ██║██║   ██║██████╔╝██║     ██║  ██║
+██╔═══╝ ██╔══██║╚════██║╚════██║    ██║███╗██║██║   ██║██╔══██╗██║     ██║  ██║
+██║     ██║  ██║███████║███████║    ╚███╔███╔╝╚██████╔╝██║  ██║███████╗██████╔╝
+╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝     ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═════╝ 
+""")
+
+    print("by Silver".center(72))
+    print("-="*40)
+    pseudo = input("Quel est ton pseudo ?")
+    while (True) :
+        code_admin = input("As-tu un code ADMIN ou un code de triche ? (o/n)")
+        if (code_admin.lower() == 'o') :
+            clear()
+            print("Code de triche active")
+            time.sleep(1)
+            break
+        elif (code_admin.lower() == 'n') :
+            clear()
+            print("Code de triche desactive")
+            time.sleep(1)
+            break
+        else :
+            clear()
+            print("ERREUR : (ONLY o/n)")
+    while (True) :
+        choix_user = input("Veux-tu faire le tutoriel ? (o/n)")
+        if (choix_user.lower() == 'o') :
+            clear()
+            print("Tutoriel active")
+            time.sleep(1)
+            break
+        elif (choix_user.lower() == 'n') :
+            clear()
+            print("Tutoriel desactive")
+            time.sleep(1)
+            break
+        else :
+            clear()
+            print("ERREUR : (ONLY o/n)")
+    return pseudo
+
+pseudo = bonjour() # Bienvenue sur PASSWORLD
+
+def admin_choix(pseudo) :
     global dictionnaire_auto
     global dictionnaire_auto_add
     global choix_admin_categories
+
     clear()
     while (True) :
         print("="*70)
         print(" CONFIGURATION ADMIN ".center(70, "═"))
+        print(f"connecte en tant que {pseudo}".center(70))
         print("="*70)
-        print(f"\n Catégories actuelles : {', '.join(dictionnaire_auto_add['categories_mot_de_passe'])}")
+        noms = [tuples[0] for tuples in dictionnaire_auto_add['categories_mot_de_passe']]
+        print(f"\n Catégories actuelles : {', '.join(noms)}")
         print("-" * 30)
         print("- Tapez le NOM d'une catégorie pour l'ajouter")
         print("- Tapez 'AUTO' pour charger la configuration par défaut")
@@ -42,30 +94,48 @@ def admin_choix() :
             time.sleep(2)
             break
         else :
+            noms_existants = [tuples[0] for tuples in dictionnaire_auto_add['categories_mot_de_passe']]
             if (choix_admin_categories.lower() in dictionnaire_interdit['categories_mots_interdits']) :
                 print(f"ATTENTION : '{choix_admin_categories}' est un mot interdit")
                 time.sleep(3)
                 clear()
-            elif (choix_admin_categories in dictionnaire_auto_add['categories_mot_de_passe'] ):
-                        clear()
-                        print(f"🔴 La categorie '{choix_admin_categories}' existe deja\n")
+            elif (choix_admin_categories in noms_existants):
+                clear()
+                print(f"🔴 La categorie '{choix_admin_categories}' existe deja\n")
             else :
                 dictionnaire_auto_add['categories_mot_de_passe'].append(choix_admin_categories)
                 clear()
                 print(f"✅ La categorie '{choix_admin_categories}' a bien etait rajoutee !\n")
 
 def add_mdp(dictionnaire) :
-    clear()
-    print("="*75)
-    print(" AJOUT MOT DE PASSE ".center(75, "/"))
-    print("="*75)
-    print("Voici la liste des categories de user : \n")
-    for i in dictionnaire['categories_mot_de_passe']:
-        print(f"- {i} ", end="")
-    input("")
+    while (True) :
+        clear()
+        print("="*75)
+        print(" AJOUT MOT DE PASSE ".center(75, "/"))
+        print("="*75)
+        print("Voici la liste des categories de user : \n")
+        noms_base = [tuples[0] for tuples in dictionnaire_auto_add['categories_mot_de_passe']]
+        for i in noms_base : # NE PAS TOUCHER
+            print(f"- {i} ", end="")
+        choix_user_categorie = input("\nParmi les catégories ci-dessus, choisis-en une : ")
+        noms_categories = [tuples[0].lower() for tuples in dictionnaire_auto_add['categories_mot_de_passe']]
+        if (choix_user_categorie.lower() in noms_categories) :
+            while (True) :
+                choix_user_mdp = input(f"Choisis ton mot de passe pour ton compte chez {choix_user} :")
+                demander_mdp_valide(choix_user_categorie, dictionnaire)
+                if (verif_mdp == True) :
+                    print()
+                    time.sleep(2)
+                    break
+                else :
+                    print()
+                    time.sleep(2)
+        else :
+            print(f"ERREUR : la categorie '{choix_user_categorie}' est inexistante")
+            time.sleep(2)
 
-def supp_mdp(choix_user) :
-    print(choix_user)
+def supp_mdp(dictionnaire) :
+    print(dictionnaire)
 
 
 def aff_menu() :
@@ -92,7 +162,7 @@ def aff_menu() :
                 # Ajouter le systeme supp_mdp
             elif (choix_user == 4) :
                 print("Tu as choisis l'option 4")
-                admin_choix()
+                admin_choix(pseudo)
             elif (choix_user == 5) :
                 while (True) :
                     clear()
