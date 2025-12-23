@@ -1,24 +1,10 @@
-# Ajouter/Modifier/Supprimer des mots de passe
 import os
 import time
 from verif_mdp import verif_mdp
-
+from config import dictionnaire_auto, dictionnaire_auto_add
 
 def clear() :
     os.system('cls' if os.name == 'nt' else 'clear')
-
-dictionnaire_auto = {
-'categories_mot_de_passe' : [
-    "Netflix", "Amazon", "Github", "Apple", 
-    "Google", "Facebook", "Spotify", "Steam", 
-    "Adobe", "LinkedIn", "Instagram", "Discord"]
-}
-dictionnaire_auto_add = {
-'categories_mot_de_passe' : [
-    "Netflix", "Amazon", "Github", "Apple", 
-    "Google", "Facebook", "Spotify", "Steam", 
-    "Adobe", "LinkedIn", "Instagram", "Discord"]
-}
 
 def admin_choix() :
     global dictionnaire_auto
