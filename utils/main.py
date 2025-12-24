@@ -74,6 +74,7 @@ def admin_choix(pseudo) :
         print("- Tapez 'STOP' pour finaliser et quitter")
         print("-" * 30)
         choix_admin_categories = input("Ecris ton choix -->")
+        mdp = ''
         clear()
         if (choix_admin_categories.lower() == 'auto') :
             choix_user_auto = input("ATTENTION TA LISTE QUE TU AS CREER VA ETRE SUPPRIMEE TU ES SUR QUE TU VEUX CONTINUER ? (o/n)")
@@ -103,7 +104,7 @@ def admin_choix(pseudo) :
                 clear()
                 print(f"🔴 La categorie '{choix_admin_categories}' existe deja\n")
             else :
-                dictionnaire_auto_add['categories_mot_de_passe'].append(choix_admin_categories)
+                dictionnaire_auto_add['categories_mot_de_passe'].append((choix_admin_categories, mdp))
                 clear()
                 print(f"✅ La categorie '{choix_admin_categories}' a bien etait rajoutee !\n")
 
@@ -140,6 +141,11 @@ def add_mdp(dictionnaire) :
 def supp_mdp(dictionnaire) :
     print(dictionnaire)
 
+def modif_mdp(dictionnaire) :
+    print(dictionnaire)
+
+def aff_mdp(dictionnaire) :
+    print(dictionnaire)
 
 def aff_menu() :
     while (True) :
