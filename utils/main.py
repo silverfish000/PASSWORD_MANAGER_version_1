@@ -66,7 +66,7 @@ def admin_choix(pseudo) :
         print(" CONFIGURATION ADMIN ".center(70, "═"))
         print(f"connecte en tant que {pseudo}".center(70))
         print("="*70)
-        noms = [tuples[0] for tuples in dictionnaire_auto_add['categories_mot_de_passe']]
+        noms = [caca[0] for caca in dictionnaire_auto_add]
         print(f"\n Catégories actuelles : {', '.join(noms)}")
         print("-" * 30)
         print("- Tapez le NOM d'une catégorie pour l'ajouter")
