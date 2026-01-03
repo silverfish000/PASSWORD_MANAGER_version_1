@@ -1,4 +1,4 @@
-# PASS WORLD — Version 1
+# PASSWORD MANAGER — Version 1
 
 Cette première version de mon gestionnaire de mots de passe est volontairement imparfaite et désordonnée.
 
